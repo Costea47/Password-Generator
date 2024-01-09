@@ -147,6 +147,9 @@ function generatePassword() {
   if (options === null) {
     return '';
   }
+
+  let password = '';
+  
   //Generate random password using options
   for(let i = 0; i < options.length; i++) {
     password += getRandom(options.chars);
