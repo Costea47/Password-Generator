@@ -135,14 +135,24 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  return arr[Math.floor(Math.random() * arr.length)];
 }
+
 
 // Function to generate password with user input
 function generatePassword() {
-     
+  let options = getPasswordOptions();
 
-
+  // User canceled input
+  if (options === null) {
+    return '';
+  }
+  //Generate random password using options
+  for(let i = 0; i < options.length; i++) {
+    password += getRandom(options.chars);
+  }
+  
+  return password;
 }
 
 // Get references to the #generate element
