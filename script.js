@@ -92,8 +92,9 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
   // Ask users for password criteria
   let characterLength = parseInt(prompt("How many characters would your password should have? Must be at leas 8."));
+  // Check if the entered characterLength is less than 8 or greater than 128
   if (characterLength < 8 || characterLength >128){
-   alert("Sorry,must be a value between 8 and 128.")
+   alert("Sorry,must be a value between 8 and 128.") 
    return null;
   }
   
@@ -118,16 +119,16 @@ function getPasswordOptions() {
   // Add selected character types to the options object
   if (characterTypeLower) {
   options.chars.push(...lowerCasedCharacters);
-  }
+  } // Check if the user wants lowercase characters in the password
   if(characterTypeUpper) {
   options.chars.push(...upperCasedCharacters);
-  }
+  }// Check if the user wants uppercase characters in the password
   if (characterTypeNum) {
   options.chars.push(...numericCharacters);
-  }
+  }// Check if the user wants numeric characters in the password
   if (characterTypeSpecial) {
   options.chars.push(...specialCharacters);
-  }
+  }// Check if the user wants special characters in the password 
 
   return options;
 
@@ -135,6 +136,7 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  // Generate a random index within the length of the array 'arr'
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
