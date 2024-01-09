@@ -112,8 +112,8 @@ function getPasswordOptions() {
 
   // Creat an object to store user choices
   let options = {
-  length:characterLength,
-  chars:[]
+  length:characterLength,  // Store the selected password length
+  chars:[]                 // Initialize an empty array to store the selected character types
   };
 
   // Add selected character types to the options object
@@ -129,7 +129,7 @@ function getPasswordOptions() {
   if (characterTypeSpecial) {
   options.chars.push(...specialCharacters);
   }// Check if the user wants special characters in the password 
-
+    // If yes push all the characters the options.chars array
   return options;
 
 }
@@ -138,6 +138,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   // Generate a random index within the length of the array 'arr'
   return arr[Math.floor(Math.random() * arr.length)];
+  // Return the element at the randomly generated index in the array
 }
 
 
@@ -145,15 +146,17 @@ function getRandom(arr) {
 function generatePassword() {
   let options = getPasswordOptions();
 
-  // User canceled input
+  // Check if the user canceled the input or selected invalid options
   if (options === null) {
+     // If the options are null, return an empty string to indicate no password is generated
     return '';
   }
-
+  // Initialize an empty 'password' variable to store the generated password
   let password = '';
   
   //Generate random password using options
   for(let i = 0; i < options.length; i++) {
+     // Append a random character from the 'options.chars' array to the 'password' string
     password += getRandom(options.chars);
   }
   
