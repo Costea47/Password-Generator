@@ -90,22 +90,47 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-// Ask users for password criteria
-let characterLength = parseInt(prompt("How many cgaracters? Must be at leas 8."));
-if (characterLength < 8 || characterLength >128){
+  // Ask users for password criteria
+  let characterLength = parseInt(prompt("How many characters would your password should have? Must be at leas 8."));
+  if (characterLength < 8 || characterLength >128){
    alert("Sorry,must be a value between 8 and 128.")
    return null;
-}
+  }
   
-let characterTypeUpper = confirm("Would you like Uppercase characters?");
-let characterTypeLower = confirm("Would you like Lower Case characters?");
-let characterTypeNum = confirm("Would you like any numbers?");
-let characterTypeSpecial = confirm("Would you like Special characters?");
-}
-// Validate the user input
-if(!characterTypeUpper && !characterTypeLower && !characterTypeNum && !characterTypeSpecial) {
+  let characterTypeUpper = confirm("Would you like Uppercase characters?");
+  let characterTypeLower = confirm("Would you like Lower Case characters?");
+  let characterTypeNum = confirm("Would you like any numbers?");
+  let characterTypeSpecial = confirm("Would you like Special characters?");
+
+
+  // Validate the user input
+  if(!characterTypeUpper && !characterTypeLower && !characterTypeNum && !characterTypeSpecial) {
   alert("You must select at least one character type.");
   return null;
+  }
+
+  // Creat an object to store user choices
+  let options = {
+  length:characterLength,
+  chars:[]
+  };
+
+  // Add selected character types to the options object
+  if (characterTypeLower) {
+  options.chars.push(...lowerCasedCharacters);
+  }
+  if(characterTypeUpper) {
+  options.chars.push(...upperCasedCharacters);
+  }
+  if (characterTypeNum) {
+  options.chars.push(...numericCharacters);
+  }
+  if (characterTypeSpecial) {
+  options.chars.push(...specialCharacters);
+  }
+
+  return options;
+
 }
 
 // Function for getting a random element from an array
